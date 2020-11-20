@@ -1,0 +1,42 @@
+<%- include('../partials/navCandidate') %>   
+   <div class="main-body">
+        <!-- Jobs -->
+        <% jobs.forEach((job, index) => { %>
+            <div class="card ml-5"  style="width: 50rem;">
+                <div class="card-header">
+                  <h4><%= job.companyName %></h4>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">For <%= job.qualificationNeeded %></h5>
+                  <p class="card-text">
+                      <p>Job Added: <b><%= job.jobAdded.toLocaleDateString() %></b></p>
+                      <p><b>Application Fill Deadline: </b><%= job.appDeadline.toLocaleDateString() %></p>
+                      <p><b>Vacancies: </b><%= job.vacacies %></p>
+                      <p>Description: <%= job.description %></p>
+                  </p>
+                  <form action="/candidate/applyJob?j_id=<%= job.j_id %>&cand_id=<%= cand_id %>&rec_id=<%= job.rec_id %>" method="post">
+                      <button class="btn btn-primary" id="btn<%= index %>" type="submit">Apply</button>
+                  </form>
+                </div>
+            </div>
+            <br><br>
+
+        <% }) %>
+    </div>
+</div>
+
+    </div>
+</div>
+</div>
+<%- include('../partials/footer') %>
+
+<script>
+    const btns = document.querySelectorAll('button');
+
+    btns.forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+            // event.preventDefault()
+            event.target.innerHTML = "Applied";
+        });
+    });
+</script>

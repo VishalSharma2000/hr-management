@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+
+<h1> Welcome to IIIT HR Management</h1>
+
+<div class="users">
+    <div class="candidate">
+        <form action="/login/candidate" method="GET">
+            <button class="btn-lg btn-primary">Candidate</button>
+        </form>
+    </div>
+    <div class="recruiter">
+        <form action="/login/recuireter" method="GET">
+            <button class="btn-lg btn-secondary">Recruiter</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    h1 {
+        text-align: center;
+        font-size: 80px;
+        color: blue;
+    }
+
+    .users {
+        margin: 15% auto auto 20%;
+    }
+
+    .candidate {
+        display: inline-block;
+    }
+
+    .recruiter {
+        display: inline-block;
+    }
+
+    button {
+        font-size: 70px !important;
+        padding: 50px !important;
+        margin-right: 10px;
+    }
+</style>
+
+<%- include('../partials/footer') %>

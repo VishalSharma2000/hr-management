@@ -1,0 +1,108 @@
+<% if(userType === 'candidate') { %>
+    <%- include('../partials/navCandidate') %>
+<% } else { %>
+    <%- include('../partials/navRecuireter') %>
+<% } %>
+
+<div class="main-body">
+    <% if(userType === 'candidate') { %>
+
+    <h3 class="mb-5 mt-5">All Applications</h3>
+
+    <table>
+        <tr>
+            <th>Company Name</th>
+            <th>Job ID</th>
+            <th>Applied On</th>
+            <th>Total Vacancies</th>
+            <th>Selection Status</th>
+        </tr>
+
+        <% applications.forEach((application) => { %>
+            <tr>
+                <td><%= application.companyName %></td>
+                <td><%= application.j_id %></td>
+                <td><%= application.appliedOn %></td>
+                <td><%= application.vacacies %></td>
+                <td><%= application.selection === 1 ? "selected" : "no response" %></td>
+            </tr>
+        <% }) %>
+
+    </table>
+
+    <% } else { %>
+    
+        <h3 class="mb-5 mt-5">All Applications</h3>
+
+        <table>
+            <tr>
+                <th>Job ID</th>
+                <th>Applied On</th>
+                <th>Total Vacancies</th>
+                <th>Candidate Name</th>
+                <th>Candidate Qualification</th>
+                <th>Selection</th>
+            </tr>
+    
+            <% applications.forEach((application, index) => { %>
+                <tr>
+                    <td><%= application.j_id %></td>
+                    <td><%= application.appliedOn.toLocaleString() %></td>
+                    <td><%= application.vacacies %></td>
+                    <td><%= application.fullname %></td>
+                    <td><%= application.qualification %></td>
+                    <td>
+                        <!-- <form> -->
+                            <input id="cand_id=<%= application.cand_id %>&j_id=<%= application.j_id %>" type="checkbox" onchange="onChangeSelection(event)" <%= application.selection === "1" ? "checked" : "" %> />
+                         <!-- </form> -->
+                         <!-- action="/select?cand_id=<%= application.cand_id %>&j_id=<%= application.j_id %>" -->
+                    </td>
+                </tr>
+            <% }) %>
+    
+        </table> 
+
+    <% } %>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<style>
+    td, th {
+        padding: 0 15px;
+        width: 10%;
+    }
+
+    table, td, th{
+        border: 1px solid black;
+    }
+</style>
+
+<script>
+    let chkbox = document.querySelectorAll('checkbox');
+
+    chkbox.forEach(box => {
+        box.addEventListener('change', (event) => {
+            event.preventDefault();
+            console.log(event.target, event.target.checked);
+            // if(event.target)
+        });
+    });
+
+    const onChangeSelection = async (event) => {
+        console.log(event.target.checked);
+        fetch('http://localhost:3000/candidate/select?selection=' + event.target.checked + '&' + event.target.id, {
+            method: "POST",
+            body: {
+                selection: event.target.checked
+            }
+        })
+        .then(res => res.json())
+        .then(val => console.log(val));
+    }
+</script>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,93 @@
+<%- include('../partials/header') %>
+
+<div class="container pb-5">
+    <h2 class="mt-3">Register</h2>
+
+    <% if(edit) { %> 
+        <form class="mt-3" action="/<%= userType %>/editProfile" method="post">    
+    <% } else { %>  
+        <form class="mt-3" action="/register/<%= userType %>" method="post">
+    <% } %>
+
+        <div class="form-group">
+            <label for="name">Enter Full name</label>
+            <input class="form-control" type="text" name="fullname" value="<%= candidate.fullname %>" placeholder="Enter full name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="address">Enter address: </label>
+            <textarea class="form-control" name="address" rows="3" required><%= candidate.address %></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="college">Enter College Name</label>
+            <input class="form-control" name="college" value="<%= candidate.college %>" placeholder="Enter college name" required/>
+        </div>
+        
+        <div class="form-group">
+            <label for="qualification">Enter Qualification: </label>
+            <select class="form-control" name="qualification" required>
+                <option selected disabled>Select your qualification</option>
+                <option value="B.Tech" <%= candidate.qualification === "B.Tech" ? "selected" : "" %> >B.Tech</option>
+                <option value="B.E" <%= candidate.qualification === "B.E" ? "selected" : "" %> >B.E</option>
+                <option value="M.Tech" <%= candidate.qualification === "M.Tech" ? "selected" : "" %> >M.Tech</option>
+                <option value="MSC" <%= candidate.qualification === "MSC" ? "selected" : "" %> >MSC</option>
+                <option value="BSC" <%= candidate.qualification === "BSC" ? "selected" : "" %> >BSC</option>
+                <option value="BA" <%= candidate.qualification === "BA" ? "selected" : "" %> >BA</option>
+                <option value="MBA" <%= candidate.qualification === "MBA" ? "selected" : "" %> >MBA</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="major">Enter major Study In: </label>
+            <select class="form-control" name="major" required>
+                <option selected disabled>Study major In</option>
+                <option value="CSE" <%= candidate.major === "CSE" ? "selected" : "" %> >Computer Science</option>
+                <option value="EEE" <%= candidate.major === "EEE" ? "selected" : "" %> >Electrical and Electronic</option>
+                <option value="ME" <%= candidate.major === "ME" ? "selected" : "" %> >Mechanical Engineering</option>
+                <option value="CE" <%= candidate.major === "CE" ? "selected" : "" %> >Civil Engineering</option>
+            </select>
+        </div>
+        
+        <div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" name="passStatus" value="passout" <%= candidate.passStatus === 'passout' ? "checked" : "" %>  required>
+                <label for="passout">Passout</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" name="passStatus" value="studying" <%= candidate.passStatus === 'studying' ? "checked" : "" %> required>
+                <label for="studying">Current Studying</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="selYears" class="labelSelYears">Choose Passout Year</label>
+            <select class="form-control selYears" name="year" required>
+                <option value="2016" candidate.year === '2016' ? "selected" : "" >2016</option>
+                <option value="2017" candidate.year === '2017' ? "selected" : "" >2017</option>
+                <option value="2018" candidate.year === '2018' ? "selected" : "" >2018</option>
+                <option value="2019" candidate.year === '2019' ? "selected" : "" >2019</option>
+                <option value="2020" candidate.year === '2020' ? "selected" : ""  candidate.year === '201' ? "selected" : "" >2020</option>
+                <option value="2021" candidate.year === '2021' ? "selected" : "" >2021</op candidate.year === '201' ? "selected" : "" tion>
+                <option value="2022" candidate.year === '2022' ? "selected" : "" >2022</op candidate.year === '201' ? "selected" : "" tion>
+                <option value="2023" candidate.year === '2023' ? "selected" : "" >2023</op candidate.year === '201' ? "selected" : "" tion>
+                <option value="2024" candidate.year === '2024' ? "selected" : "" >2024</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cgpa">Enter Average CGPA</label>
+            <input class="form-control" type="number" name="avgCGPA" value="<%= candidate.avgCGPA %>" min="0" step=".01" placeholder="Enter Average CGPA" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password for login</label>
+            <input class="form-control" type="password" name="password" value="<%= candidate.password %>"  placeholder="Enter Password" required>
+        </div>
+
+        <button type="submit" name="cand_id" value="<%= candidate.cand_id %>" class="btn btn-primary mb-3">Save</button>
+    </form>
+</div>
+
+
+<%- include ('../partials/footer') %>

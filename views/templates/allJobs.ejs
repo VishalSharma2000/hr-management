@@ -1,0 +1,30 @@
+<%- include('../partials/navRecuireter') %>
+
+<div class="main-body">
+    <!-- Jobs -->
+    <% jobs.forEach((job, index) => { %>
+        <div class="card ml-5"  style="width: 50rem;">
+            <div class="card-header">
+              <h4><%= job.j_id %></h4>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">For <%= job.qualificationNeeded %></h5>
+              <p class="card-text">
+                  <p>Job Added: <b><%= job.jobAdded.toLocaleString() %></b></p>
+                  <p><b>Application Fill Deadline: </b><%= job.appDeadline.toLocaleDateString() %></p>
+                  <p><b>Vacancies: </b><%= job.vacacies %></p>
+                  <p>Description: <b><%= job.description %></b></p>
+              </p>
+            </div>
+        </div>
+        <br><br>
+
+    <% }) %>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<%- include('../partials/footer') %>

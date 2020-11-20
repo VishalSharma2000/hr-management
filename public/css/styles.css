@@ -1,0 +1,22 @@
+/* .comp {
+  display: flex;
+  flex-direction: row;
+}
+
+.comp .navigation {
+  padding-right: 30px; */
+/* } */
+
+.container-fluid {
+  padding-left: 0px !important;
+}
+
+.bd-highlight {
+  text-align: center;
+}
+
+.navigation {
+  font-size: 20px;
+  color: blue;
+  border-right: 1px solid skyblue;
+}

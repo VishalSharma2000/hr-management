@@ -1,0 +1,71 @@
+<%- include('../partials/header') %>
+
+<div class="container pb-5">
+    <h2 class="mt-3">Register <%= userType %> For 
+        <% if(companys.length != 0 && !edit) { %>
+            Existing 
+        <% } else if(!edit) { %>
+            New
+        <% } else { %>
+            Edit
+        <% } %>
+        Company
+    </h2>
+
+        <h4 class="mt-3">Company Detail</h4>
+        <% if(companys.length != 0 && !edit) { %>
+            <form class="mt-3" action="/register/<%= userType %>" method="post">
+        <% } else if(!edit) { %>
+            <form class="mt-3" action="/addNewCompany" method="post">
+        <% } else { %>
+            <form class="mt-3" action="/<%= userType %>/editProfile?id=<%= company.rec_id %>" method="post">
+        <% } %>
+
+        <% if(companys.length !== 0 && !edit) { %>
+            <select class="form-control" name="comp_id" required>
+                <% companys.forEach((company) => { %>
+                    <option value="<%= company.comp_id %>"><%= company.companyName %></option>
+                <% }); %>
+            </select>
+        <% } else { %>
+            <div class="form-group">
+                <input type="text" class="form-control" name="comp_id" value="<%= company.comp_id %>" style="visibility: hidden;" />
+            </div>
+
+            <div class="form-group">
+                <label for="companyName">Enter Company Name: </label>
+                <input type="text" class="form-control" name="companyName" value="<%= company.companyName %>" required />
+            </div>
+
+            <div class="form-group">
+                <label for="companyWorking">Enter Related to working of company</label>
+                <textarea class="form-control" name="compnayWorking" required><%= company.compnayWorking %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="departments">Departments in company(Seperate each department with <b>semicolon(;)</b>)</label>
+                <textarea class="form-control" name="departments" required><%= company.departments %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="branches">Different branches of company(Seperate each department with <b>semicolon(;)</b>)</label>
+                <textarea class="form-control" name="branches" required><%= company.branches %></textarea>
+            </div>
+        <% } %>
+
+        <h4>Recuireter Detail</h4>
+        <div class="form-group">
+            <label for="name">Enter Full name</label>
+            <input class="form-control" type="text" name="hrName" placeholder="Enter full name" value="<%= company.hrName %>" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password for login</label>
+            <input class="form-control" type="password" name="password" placeholder="Enter Password" value="<%= company.password %>" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-3">Save</button>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>

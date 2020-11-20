@@ -1,0 +1,63 @@
+<%- include('../partials/navRecuireter') %>
+<div class="container-fluid">
+<div class="main-body">
+    <form action="/recruiter/newJob" method="post">
+        <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" name="companyName" value="<%= company.companyName %>" readonly/>
+        </div>
+
+        <div style="visibility: hidden;" class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" name="comp_id" value="<%= company.comp_id %>" readonly/>
+        </div>
+
+        <div class="form-group">
+            <label for="qualificationNeeded">Qualification Needed</label>
+            <select class="form-control" name="qualificationNeeded" required>
+                <option selected disabled>Select your qualification</option>
+                <option value="B.Tech" <%= job.qualificationNeeded === "B.Tech" ? "selected" : "" %> >B.Tech</option>
+                <option value="B.E" <%= job.qualificationNeeded === "B.E" ? "selected" : "" %> >B.E</option>
+                <option value="M.Tech" <%= job.qualificationNeeded === "M.Tech" ? "selected" : "" %> >M.Tech</option>
+                <option value="MSC" <%= job.qualificationNeeded === "MSC" ? "selected" : "" %> >MSC</option>
+                <option value="BSC" <%= job.qualificationNeeded === "BSC" ? "selected" : "" %> >BSC</option>
+                <option value="BA" <%= job.qualificationNeeded === "BA" ? "selected" : "" %> >BA </option>
+                <option value="MBA" <%= job.qualificationNeeded === "MBA" ? "selected" : "" %> >MBA</option>
+            </select>    
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" cols="30" rows=""> <%= job.description %></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="location">Choose Location:</label>
+            <select name="location">
+            <% job.locations.forEach((location) => { %>
+                <option value="<%= location%>"> <%= location.toUpperCase() %></option>
+            <% }) %>
+        </select>
+        </div>
+
+        <div class="form-group">
+            <label for="appDeadline">Application Deadline</label>
+            <input type="date" name="appDeadline" value="job.appDeadline" />
+        </div>
+
+        <div class="form-group">
+            <label for="vacancies">Enter vacancies: </label>
+            <input type="number" name="vacancies" value="<%= job.vacancies %>" />
+        </div>
+
+        <button type="submit" value="<%= id %>" name="rec_id" class="btn btn-primary">Save</button>
+    </form>    
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<%- include('../partials/footer') %>

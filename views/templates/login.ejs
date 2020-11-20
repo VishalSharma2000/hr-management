@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+
+<!-- <form action="/login/<%= userType %>" method="POST">
+    <label for="ID">
+        <input type="text" name="username" placeholder="<%= userType %> ID  "/> <br /><br />
+        <input type="password" name="password" placeholder="password" /> <br /><br />
+        <button type="submit" name="userType" value="<%= userType %>"> Login </button>
+    </label>
+</form> -->
+
+<div class="container">
+    <h2> <%= title %> </h2>
+    
+    <h4 style="color: red;">
+        <% if(error) { %>
+            Bad Login Credentials. Try Again.
+        <% } %>
+    </h4>
+    
+    <form action="/login/<%= userType %>" method="POST">
+    <div class="form-group mt-5">
+      <input type="text" class="form-control" name="username" placeholder="<%= userType %> ID  "/>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" placeholder="password" />
+    </div>
+
+    <button type="submit" name="userType" value="<%= userType %>" class="btn btn-primary">Login</button>
+    <a href="/" class="btn btn-secondary">Back</a>
+<br>
+    <% if(userType === 'candidate') { %>
+        <br> <a href="/register/<%= userType %>">Register Candidate</a>
+    <% } else { %>
+        <br> <a href="/register/<%= userType %>">Register for Existing Company</a> <br />
+        <br> <a href="/addNewCompany">Add New Company</a>
+    <% } %>
+
+  </form>
+</div>
+
+<style>
+
+</style>
+
+<%- include('../partials/footer') %>
